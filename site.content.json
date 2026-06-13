@@ -1,103 +1,97 @@
 {
   "business": {
-    "name": "Hawthorne & Co.",
-    "tagline": "Plumbing Nashville homeowners *trust*.",
-    "description": "Licensed, insured, and family-run since 2009. From middle-of-the-night emergencies to full repipes, Hawthorne & Co. brings honest pricing and clean, careful work to homes across greater Nashville.",
+    "name": "Westchester Plumbing",
+    "tagline": "Fast, honest plumbing for the *Westside*.",
+    "description": "Family-run, licensed, and trusted across the Westside. From burst pipes to full repipes, Westchester Plumbing shows up fast, explains your options honestly, and leaves your home spotless — the standard our Santa Monica and Westchester neighbors count on.",
     "industry": "plumber",
-    "foundedYear": 2009,
-    "license": "Licensed & insured · TN Master Plumber #12345",
-    "domain": "hawthorneplumbing.com"
+    "foundedYear": 2010,
+    "license": "Licensed & insured · California C-36 Plumbing Contractor",
+    "domain": "westchesterplumbing.net"
   },
   "contact": {
-    "phone": "(615) 555-0142",
-    "phoneTel": "+16155550142",
-    "email": "hello@hawthorneplumbing.com",
+    "phone": "(310) 568-8648",
+    "phoneTel": "+13105688648",
+    "email": "info@westchesterplumbing.net",
     "address": {
-      "street": "1208 Hawthorne Ave",
-      "city": "Nashville",
-      "state": "TN",
-      "zip": "37206"
+      "street": "Westchester",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zip": "90045"
     },
     "hours": [
-      { "days": "Mon – Fri", "time": "7:00 AM – 6:00 PM" },
-      { "days": "Saturday", "time": "8:00 AM – 2:00 PM" },
+      { "days": "Mon – Fri", "time": "8:00 AM – 5:00 PM" },
+      { "days": "Saturday", "time": "9:00 AM – 2:00 PM" },
       { "days": "Sunday", "time": "Emergency service only" }
     ],
-    "mapsUrl": "https://maps.google.com/?q=Hawthorne+%26+Co+Plumbing+Nashville"
+    "mapsUrl": "https://maps.google.com/?q=Westchester+Plumbing+Los+Angeles"
   },
   "serviceArea": [
-    "Nashville",
-    "East Nashville",
-    "Franklin",
-    "Brentwood",
-    "Hendersonville",
-    "Mt. Juliet",
-    "Murfreesboro",
-    "Green Hills",
-    "Belle Meade",
-    "Germantown"
+    "Westchester",
+    "Santa Monica",
+    "Playa del Rey",
+    "Playa Vista",
+    "Marina del Rey",
+    "Venice",
+    "Mar Vista",
+    "Culver City",
+    "El Segundo",
+    "Westwood"
   ],
   "services": [
     {
       "slug": "emergency-plumbing",
       "title": "Emergency Repairs",
-      "blurb": "Burst pipes, major leaks, no hot water — same-day response, 24 hours a day."
+      "blurb": "Burst pipes, major leaks, no hot water — fast Westside response, often same day."
     },
     {
       "slug": "drain-cleaning",
       "title": "Drain & Sewer Cleaning",
-      "blurb": "Camera diagnostics, hydro-jetting, and root removal that actually lasts."
+      "blurb": "Clogs, slow drains, and sewer backups cleared with camera diagnostics and hydro-jetting."
     },
     {
       "slug": "water-heaters",
       "title": "Water Heaters",
-      "blurb": "Tank and tankless installs, repairs, and same-week replacements."
+      "blurb": "Tank and tankless water heaters — installed, repaired, and replaced, sized right for your home."
     },
     {
       "slug": "repiping",
       "title": "Repiping & Remodels",
-      "blurb": "Whole-home repipes and clean rough-ins for kitchens and bathrooms."
+      "blurb": "Whole-home repipes and clean rough-ins for kitchen and bathroom remodels."
     },
     {
       "slug": "fixtures",
       "title": "Fixtures & Faucets",
-      "blurb": "Faucets, toilets, disposals, and water filtration — installed right."
+      "blurb": "Faucets, toilets, garbage disposals, and water filtration, installed right the first time."
     },
     {
-      "slug": "inspections",
-      "title": "Inspections & Maintenance",
-      "blurb": "Pre-purchase inspections and annual tune-ups that catch problems early."
+      "slug": "leak-detection",
+      "title": "Leak Detection & Maintenance",
+      "blurb": "Leak detection and preventative tune-ups that catch small problems before they flood."
     }
   ],
   "reviews": {
-    "rating": 4.9,
-    "count": 312,
+    "rating": 5,
+    "count": 6,
     "source": "Google",
-    "sourceUrl": "https://maps.google.com/?q=Hawthorne+%26+Co+Plumbing+Nashville",
+    "sourceUrl": "https://www.google.com/search?q=Westchester+Plumbing+Los+Angeles+reviews",
     "items": [
       {
-        "author": "Jenna R.",
+        "author": "James Palmer",
         "rating": 5,
-        "date": "2 weeks ago",
-        "body": "Woke up to water all over the kitchen floor. Marcus had someone out within the hour, found the slab leak, and walked me through every option with zero pressure. Fair price, spotless work."
+        "date": "3 years ago",
+        "body": "Technician arrived within 45 minutes of my call. Replaced the kitchen faucet in practically no time. Left the place immaculate. I highly recommend Westchester Plumbing to all."
       },
       {
-        "author": "David M.",
+        "author": "Domingo Rivera",
         "rating": 5,
-        "date": "1 month ago",
-        "body": "Tankless install in an older East Nashville home — not a simple job. The crew was on time, tidy, and clearly knew what they were doing. The quote matched the final bill to the dollar."
+        "date": "3 years ago",
+        "body": "We have called numerous times when we had an urgent need and thus far they come through. They take the time to explain the problem so that you can weigh your options. They are reliable, friendly, and honest."
       },
       {
-        "author": "Priya S.",
+        "author": "Cindy Lang",
         "rating": 5,
-        "date": "1 month ago",
-        "body": "Three other plumbers quoted me a full repipe. Hawthorne found it was one bad section, fixed it for a fraction, and never tried to upsell. Honest people — I won't call anyone else."
-      },
-      {
-        "author": "Tom B.",
-        "rating": 5,
-        "date": "2 months ago",
-        "body": "Used them for a bathroom remodel rough-in. Communicative, licensed, and the inspection passed first try. Already booked them for my rental property."
+        "date": "5 years ago",
+        "body": "This company is amazing! So professional and great work — had all my pipes replaced!"
       }
     ]
   },
@@ -126,47 +120,45 @@
   "faq": [
     {
       "q": "Do you offer emergency service?",
-      "a": "Yes. We answer calls 24/7 for burst pipes, major leaks, and no-hot-water emergencies across greater Nashville — usually with same-day response."
+      "a": "Yes — we answer calls for burst pipes, major leaks, and no-hot-water emergencies across the Westside, often with same-day response."
     },
     {
       "q": "Are you licensed and insured?",
-      "a": "Absolutely. Hawthorne & Co. is a licensed TN Master Plumber (#12345) and fully insured. We're happy to show proof of both on request."
-    },
-    {
-      "q": "Do you charge for estimates?",
-      "a": "Diagnostic visits are a flat rate, credited toward the repair if you move forward. You'll always approve the full price before we start any work."
+      "a": "Yes. Westchester Plumbing is a licensed California C-36 plumbing contractor and fully insured — happy to show proof on request."
     },
     {
       "q": "What areas do you serve?",
-      "a": "Nashville and the surrounding communities — East Nashville, Franklin, Brentwood, Hendersonville, Mt. Juliet, Murfreesboro, and more."
+      "a": "Westchester, Santa Monica, Playa del Rey, Playa Vista, Marina del Rey, Venice, Mar Vista, Culver City, and nearby Westside communities."
+    },
+    {
+      "q": "Do you charge for estimates?",
+      "a": "We'll always quote the full price before any work begins, so you approve it first — no surprises on the invoice."
     },
     {
       "q": "Do you guarantee your work?",
-      "a": "Every job is backed by a written workmanship guarantee, on top of the manufacturer warranties on the parts and fixtures we install."
+      "a": "Every job is backed by our workmanship guarantee, on top of the manufacturer warranties on the parts and fixtures we install."
     },
     {
-      "q": "How soon can you come out?",
-      "a": "Most non-emergency calls are scheduled within 1–2 days; true emergencies are same-day. Call (615) 555-0142 for the next available window."
+      "q": "How fast can you get here?",
+      "a": "For urgent jobs we aim to be on-site fast — often within the hour. Call (310) 568-8648 for the next available window."
     }
   ],
   "about": {
-    "owner": "Marcus Hawthorne",
-    "ownerRole": "Founder & Master Plumber",
+    "owner": "Ray",
+    "ownerRole": "Master Plumber",
     "photo": null,
     "paragraphs": [
-      "Hawthorne & Co. started in 2009 with one truck, one master plumber, and a simple promise: tell people the truth and do the job right the first time.",
-      "Fifteen years later we're still family-run. We've grown by word of mouth — homeowners who were treated fairly telling their neighbors — not by chasing the cheapest bid or the biggest upsell.",
-      "Every plumber on our team is licensed, background-checked, and trained to leave your home cleaner than they found it. That's the standard Marcus holds, and it's why most of our work comes from repeat customers."
+      "Westchester Plumbing has built its name the hard way — one honest job at a time. Neighbors across Santa Monica and the Westside call us back because we show up fast, do the work right, and respect their homes.",
+      "When you call, you get a real plumber — often on-site within the hour for urgent work. We find the actual problem, explain your options in plain language, and quote the price before we start. No upsells, no surprises.",
+      "From a single kitchen faucet to a whole-home repipe, we leave every job cleaner than we found it. That's why so much of our work comes from repeat customers and word-of-mouth referrals."
     ]
   },
   "social": {
-    "google": "https://maps.google.com/?q=Hawthorne+%26+Co+Plumbing+Nashville",
-    "facebook": "https://facebook.com/hawthorneplumbing",
-    "instagram": "https://instagram.com/hawthorneplumbing",
-    "yelp": "https://yelp.com/biz/hawthorne-and-co-nashville"
+    "google": "https://maps.google.com/?q=Westchester+Plumbing+Los+Angeles",
+    "yelp": "https://www.yelp.com/biz/westchester-plumbing-los-angeles"
   },
   "theme": {
     "mode": "light",
-    "accent": "#b4532a"
+    "accent": "#1b4965"
   }
 }
