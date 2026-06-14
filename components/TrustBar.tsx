@@ -1,7 +1,9 @@
-import { siteConfig } from "@/site.config";
+"use client";
+
+import { useContent } from "@/components/ContentProvider";
 
 export default function TrustBar() {
-  const { business, contact, reviews } = siteConfig;
+  const { business, contact, reviews } = useContent();
 
   const cells = [
     `★ ${reviews.rating} · ${reviews.count}+ ${reviews.source} reviews`,

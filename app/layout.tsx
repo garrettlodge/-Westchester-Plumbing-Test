@@ -4,6 +4,7 @@ import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/site.config";
 import { buildJsonLd } from "@/lib/schema";
+import ContentProvider from "@/components/ContentProvider";
 
 const display = Instrument_Serif({
   weight: "400",
@@ -68,7 +69,7 @@ export default function RootLayout({
       style={{ "--accent": siteConfig.theme.accent } as CSSProperties}
     >
       <body>
-        {children}
+        <ContentProvider initial={siteConfig}>{children}</ContentProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -1,8 +1,10 @@
+"use client";
+
 import Reveal from "./Reveal";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 export default function About() {
-  const { about, business } = siteConfig;
+  const { about, business } = useContent();
   const initials = about.owner
     .split(" ")
     .map((w) => w[0])

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 const LINKS = [
   { href: "#services", label: "Services" },
@@ -13,7 +13,7 @@ const LINKS = [
 ];
 
 export default function Nav() {
-  const { business, contact } = siteConfig;
+  const { business, contact } = useContent();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 

@@ -1,8 +1,10 @@
+"use client";
+
 import Reveal from "./Reveal";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 export default function Contact() {
-  const { contact, business } = siteConfig;
+  const { contact, business } = useContent();
   const { address } = contact;
 
   return (

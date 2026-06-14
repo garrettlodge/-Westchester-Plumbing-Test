@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function FAQ() {
-  const { faq } = siteConfig;
+  const { faq } = useContent();
   const [open, setOpen] = useState<number | null>(0);
 
   return (

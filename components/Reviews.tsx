@@ -1,5 +1,7 @@
+"use client";
+
 import Reveal from "./Reveal";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 function Stars({ rating }: { rating: number }) {
   const full = Math.round(rating);
@@ -20,7 +22,7 @@ function Stars({ rating }: { rating: number }) {
 }
 
 export default function Reviews() {
-  const { reviews } = siteConfig;
+  const { reviews } = useContent();
 
   return (
     <section id="reviews" className="scroll-mt-24 border-t hairline py-24 md:py-32">

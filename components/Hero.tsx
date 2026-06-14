@@ -3,7 +3,7 @@
 import { Fragment } from "react";
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -25,7 +25,7 @@ function renderTagline(tagline: string) {
 }
 
 export default function Hero() {
-  const { business, contact, reviews } = siteConfig;
+  const { business, contact, reviews } = useContent();
 
   return (
     <section

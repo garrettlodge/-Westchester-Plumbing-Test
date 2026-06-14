@@ -1,9 +1,11 @@
+"use client";
+
 import { Fragment } from "react";
 import Reveal from "./Reveal";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 export default function ServiceArea() {
-  const { serviceArea, contact } = siteConfig;
+  const { serviceArea, contact } = useContent();
 
   return (
     <section id="areas" className="scroll-mt-24 border-t hairline py-24 md:py-32">

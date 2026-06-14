@@ -1,4 +1,6 @@
-import { siteConfig } from "@/site.config";
+"use client";
+
+import { useContent } from "@/components/ContentProvider";
 
 const NAV_LINKS = [
   { href: "#services", label: "Services" },
@@ -17,7 +19,7 @@ const SOCIAL_LABELS: Record<string, string> = {
 };
 
 export default function Footer() {
-  const { business, contact, social } = siteConfig;
+  const { business, contact, social } = useContent();
   const { address } = contact;
   const year = new Date().getFullYear();
 

@@ -1,8 +1,10 @@
+"use client";
+
 import Reveal from "./Reveal";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 export default function Services() {
-  const { services } = siteConfig;
+  const { services } = useContent();
 
   return (
     <section id="services" className="scroll-mt-24 py-24 md:py-32">

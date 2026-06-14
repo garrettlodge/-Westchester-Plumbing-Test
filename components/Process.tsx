@@ -1,8 +1,10 @@
+"use client";
+
 import Reveal from "./Reveal";
-import { siteConfig } from "@/site.config";
+import { useContent } from "@/components/ContentProvider";
 
 export default function Process() {
-  const { process } = siteConfig;
+  const { process } = useContent();
 
   return (
     <section id="process" className="scroll-mt-24 border-t hairline py-24 md:py-32">
