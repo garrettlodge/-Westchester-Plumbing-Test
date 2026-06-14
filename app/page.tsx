@@ -1,29 +1,13 @@
 import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
-import Services from "@/components/Services";
-import Process from "@/components/Process";
-import Reviews from "@/components/Reviews";
-import About from "@/components/About";
-import ServiceArea from "@/components/ServiceArea";
-import FAQ from "@/components/FAQ";
-import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import PageSections from "@/components/PageSections";
 
 export default function Home() {
   return (
     <>
       <Nav />
       <main>
-        <Hero />
-        <TrustBar />
-        <Services />
-        <Process />
-        <Reviews />
-        <About />
-        <ServiceArea />
-        <FAQ />
-        <Contact />
+        <PageSections />
       </main>
       <Footer />
     </>
