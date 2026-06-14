@@ -9,11 +9,11 @@
    in layout.tsx from site.config.theme.accent, so it's swappable per client.
    ═══════════════════════════════════════════════════════════════════════ */
 :root {
-  --bg: #faf9f6; /* paper-50 */
-  --fg: #141413; /* ink-950 */
-  --fg-dim: #6f6c64; /* ink-500 */
-  --hairline: rgba(20, 20, 19, 0.12);
-  --hairline-strong: rgba(20, 20, 19, 0.28);
+  --bg: #f7f5f1; /* warm cream (Oak & Grid) */
+  --fg: #1f1d1b; /* charcoal */
+  --fg-dim: #6b6862;
+  --hairline: rgba(31, 29, 27, 0.13);
+  --hairline-strong: rgba(31, 29, 27, 0.24);
   --accent: #b4532a; /* fallback; overridden inline from config */
   --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
 }
@@ -53,10 +53,11 @@ body {
 
 /* ── Editorial type utilities ──────────────────────────────────────────── */
 .text-display {
-  font-family: var(--font-display), Georgia, serif;
-  letter-spacing: -0.035em;
-  line-height: 0.96;
-  font-weight: 400;
+  /* Oak & Grid: clean modern sans for headlines (not serif) */
+  font-family: var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.021em;
+  line-height: 1.04;
+  font-weight: 500;
 }
 
 .text-eyebrow {
@@ -119,7 +120,7 @@ body {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.85rem 1.6rem;
-  border-radius: 999px;
+  border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.01em;
