@@ -73,8 +73,15 @@ export interface SiteConfig {
     mode: "light" | "dark";
     accent: string; // hex — single accent color used site-wide
   };
-  /** Optional page layout — section order, visibility, background tone. Absent = default. */
-  sections?: { type: string; visible: boolean; tone?: string }[];
+  /** Optional page layout — section order, visibility, background tone, and
+   *  user-added blocks (id + inline data). Absent = default layout. */
+  sections?: {
+    id?: string;
+    type: string;
+    visible: boolean;
+    tone?: string;
+    data?: Record<string, unknown>;
+  }[];
 }
 
 // site.content.json holds the values; the cast applies the precise types

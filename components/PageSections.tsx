@@ -11,10 +11,15 @@ import About from "./About";
 import ServiceArea from "./ServiceArea";
 import FAQ from "./FAQ";
 import Contact from "./Contact";
+import TextBlock from "./blocks/TextBlock";
+import ImageBlock from "./blocks/ImageBlock";
+import TextImageBlock from "./blocks/TextImageBlock";
 
-// Maps a section type → its component. Nav and Footer are fixed chrome and
-// live outside this list (in app/page.tsx).
-const REGISTRY: Record<string, ComponentType> = {
+type BlockProps = { section?: { data?: Record<string, unknown> }; index?: number };
+
+// type → component. Nav and Footer are fixed chrome (in app/page.tsx).
+// The block* types are user-added custom blocks that carry their own data.
+const REGISTRY: Record<string, ComponentType<BlockProps>> = {
   hero: Hero,
   trustbar: TrustBar,
   services: Services,
@@ -24,10 +29,18 @@ const REGISTRY: Record<string, ComponentType> = {
   serviceArea: ServiceArea,
   faq: FAQ,
   contact: Contact,
+  textBlock: TextBlock,
+  imageBlock: ImageBlock,
+  textImageBlock: TextImageBlock,
 };
 
 // Default layout with background tones so the page isn't a flat white wall.
-export const DEFAULT_SECTIONS: { type: string; visible: boolean; tone?: string }[] = [
+export const DEFAULT_SECTIONS: {
+  type: string;
+  visible: boolean;
+  tone?: string;
+  data?: Record<string, unknown>;
+}[] = [
   { type: "hero", visible: true },
   { type: "trustbar", visible: true },
   { type: "services", visible: true },
@@ -56,13 +69,13 @@ export default function PageSections() {
         const Cmp = REGISTRY[s.type];
         if (!Cmp) return null;
         const cls = toneClass(s.tone);
-        const key = `${s.type}-${i}`;
+        const key = (s as { id?: string }).id || `${s.type}-${i}`;
         return cls ? (
           <div key={key} className={cls}>
-            <Cmp />
+            <Cmp section={s} index={i} />
           </div>
         ) : (
-          <Cmp key={key} />
+          <Cmp key={key} section={s} index={i} />
         );
       })}
     </>
