@@ -14,6 +14,11 @@ import Contact from "./Contact";
 import TextBlock from "./blocks/TextBlock";
 import ImageBlock from "./blocks/ImageBlock";
 import TextImageBlock from "./blocks/TextImageBlock";
+import ButtonBlock from "./blocks/ButtonBlock";
+import ColumnsBlock from "./blocks/ColumnsBlock";
+import GalleryBlock from "./blocks/GalleryBlock";
+import VideoBlock from "./blocks/VideoBlock";
+import QuoteBlock from "./blocks/QuoteBlock";
 
 type BlockProps = { section?: { data?: Record<string, unknown> }; index?: number };
 
@@ -32,6 +37,11 @@ const REGISTRY: Record<string, ComponentType<BlockProps>> = {
   textBlock: TextBlock,
   imageBlock: ImageBlock,
   textImageBlock: TextImageBlock,
+  buttonBlock: ButtonBlock,
+  columnsBlock: ColumnsBlock,
+  galleryBlock: GalleryBlock,
+  videoBlock: VideoBlock,
+  quoteBlock: QuoteBlock,
 };
 
 // Default layout with background tones so the page isn't a flat white wall.
