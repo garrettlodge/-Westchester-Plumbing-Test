@@ -19,9 +19,18 @@
       "zip": "90045"
     },
     "hours": [
-      { "days": "Mon – Fri", "time": "8:00 AM – 5:00 PM" },
-      { "days": "Saturday", "time": "9:00 AM – 2:00 PM" },
-      { "days": "Sunday", "time": "Emergency service only" }
+      {
+        "days": "Mon – Fri",
+        "time": "8:00 AM – 5:00 PM"
+      },
+      {
+        "days": "Saturday",
+        "time": "9:00 AM – 2:00 PM"
+      },
+      {
+        "days": "Sunday",
+        "time": "Emergency service only"
+      }
     ],
     "mapsUrl": "https://maps.google.com/?q=Westchester+Plumbing+Los+Angeles"
   },
@@ -35,7 +44,8 @@
     "Mar Vista",
     "Culver City",
     "El Segundo",
-    "Westwood"
+    "Westwood",
+    "Sunset Park"
   ],
   "services": [
     {
