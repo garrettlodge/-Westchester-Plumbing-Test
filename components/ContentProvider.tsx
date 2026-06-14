@@ -97,8 +97,11 @@ export default function ContentProvider({
 
     const onClick = (e: MouseEvent) => {
       const t = e.target as HTMLElement | null;
-      // never navigate away inside the preview
-      if (t?.closest?.("a, button")) e.preventDefault();
+      // allow in-page anchor scrolling (#services, #contact…); only block
+      // links that would navigate away from the preview, and buttons
+      const a = t?.closest?.("a") as HTMLAnchorElement | null;
+      if (a && !(a.getAttribute("href") || "").startsWith("#")) e.preventDefault();
+      if (t?.closest?.("button")) e.preventDefault();
       const el = t?.closest?.("[data-mc-field]");
       if (el) {
         window.parent.postMessage(

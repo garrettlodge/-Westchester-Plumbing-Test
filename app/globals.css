@@ -27,6 +27,25 @@
   --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
+/* ── Section background tones (separate the blocks) ─────────────────────── */
+.sec-tone-tint {
+  background: color-mix(in srgb, var(--accent) 7%, var(--bg));
+}
+.sec-tone-muted {
+  background: color-mix(in srgb, var(--fg) 5%, var(--bg));
+}
+.sec-tone-contrast {
+  /* dark band — text + hairlines flip to light, accent pops */
+  --bg: #1f1d1b;
+  --fg: #f7f5f1;
+  --fg-dim: rgba(247, 243, 238, 0.62);
+  --hairline: rgba(247, 243, 238, 0.15);
+  --hairline-strong: rgba(247, 243, 238, 0.3);
+  --accent-soft: color-mix(in srgb, var(--accent) 22%, transparent);
+  background: var(--bg);
+  color: var(--fg);
+}
+
 * {
   box-sizing: border-box;
 }

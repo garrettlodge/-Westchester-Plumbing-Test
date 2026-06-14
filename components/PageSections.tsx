@@ -26,34 +26,44 @@ const REGISTRY: Record<string, ComponentType> = {
   contact: Contact,
 };
 
-export const DEFAULT_SECTIONS = [
-  "hero",
-  "trustbar",
-  "services",
-  "process",
-  "reviews",
-  "about",
-  "serviceArea",
-  "faq",
-  "contact",
+// Default layout with background tones so the page isn't a flat white wall.
+export const DEFAULT_SECTIONS: { type: string; visible: boolean; tone?: string }[] = [
+  { type: "hero", visible: true },
+  { type: "trustbar", visible: true },
+  { type: "services", visible: true },
+  { type: "process", visible: true, tone: "muted" },
+  { type: "reviews", visible: true, tone: "contrast" },
+  { type: "about", visible: true },
+  { type: "serviceArea", visible: true, tone: "tint" },
+  { type: "faq", visible: true },
+  { type: "contact", visible: true },
 ];
 
-// Renders the body sections in the order/visibility from content.sections.
-// Falls back to the default order when content.sections is absent — so older
-// sites (and the seed) render fully without needing the field.
+const toneClass = (tone?: string) =>
+  tone && tone !== "default" ? `sec-tone-${tone}` : "";
+
 export default function PageSections() {
   const content = useContent();
   const sections =
     content.sections && content.sections.length
       ? content.sections
-      : DEFAULT_SECTIONS.map((type) => ({ type, visible: true }));
+      : DEFAULT_SECTIONS;
 
   return (
     <>
       {sections.map((s, i) => {
         if (s.visible === false) return null;
         const Cmp = REGISTRY[s.type];
-        return Cmp ? <Cmp key={`${s.type}-${i}`} /> : null;
+        if (!Cmp) return null;
+        const cls = toneClass(s.tone);
+        const key = `${s.type}-${i}`;
+        return cls ? (
+          <div key={key} className={cls}>
+            <Cmp />
+          </div>
+        ) : (
+          <Cmp key={key} />
+        );
       })}
     </>
   );
