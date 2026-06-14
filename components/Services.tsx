@@ -1,10 +1,11 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { useContent } from "@/components/ContentProvider";
+import { useContent, useEditable } from "@/components/ContentProvider";
 
 export default function Services() {
   const { services } = useContent();
+  const ed = useEditable();
 
   return (
     <section id="services" className="scroll-mt-24 py-24 md:py-32">
@@ -28,10 +29,16 @@ export default function Services() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="flex flex-1 flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-10">
-                    <h3 className="text-display text-3xl leading-none transition-colors duration-300 group-hover:text-[color:var(--accent)] md:text-5xl">
+                    <h3
+                      className="text-display text-3xl leading-none transition-colors duration-300 group-hover:text-[color:var(--accent)] md:text-5xl"
+                      {...ed(`services.${i}.title`)}
+                    >
                       {s.title}
                     </h3>
-                    <p className="text-dim max-w-md text-sm leading-relaxed md:text-right">
+                    <p
+                      className="text-dim max-w-md text-sm leading-relaxed md:text-right"
+                      {...ed(`services.${i}.blurb`)}
+                    >
                       {s.blurb}
                     </p>
                   </div>

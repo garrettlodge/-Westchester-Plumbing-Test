@@ -1,7 +1,7 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { useContent } from "@/components/ContentProvider";
+import { useContent, useEditable } from "@/components/ContentProvider";
 
 function Stars({ rating }: { rating: number }) {
   const full = Math.round(rating);
@@ -23,6 +23,7 @@ function Stars({ rating }: { rating: number }) {
 
 export default function Reviews() {
   const { reviews } = useContent();
+  const ed = useEditable();
 
   return (
     <section id="reviews" className="scroll-mt-24 border-t hairline py-24 md:py-32">
@@ -54,7 +55,7 @@ export default function Reviews() {
         <div className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8">
           {reviews.items.map((r, i) => (
             <Reveal key={i} delay={Math.min(i * 0.06, 0.24)}>
-              <figure className="relative h-full overflow-hidden rounded-2xl border hairline p-8 md:p-10">
+              <figure className="relative h-full overflow-hidden rounded-lg border hairline p-8 md:p-10">
                 <span
                   aria-hidden
                   className="text-display text-accent pointer-events-none absolute -right-1 top-2 text-[7rem] leading-none opacity-15"
@@ -62,11 +63,16 @@ export default function Reviews() {
                   &rdquo;
                 </span>
                 <Stars rating={r.rating} />
-                <blockquote className="text-display relative mt-5 text-xl leading-snug md:text-2xl">
+                <blockquote
+                  className="text-display relative mt-5 text-xl leading-snug md:text-2xl"
+                  {...ed(`reviews.items.${i}.body`)}
+                >
                   {r.body}
                 </blockquote>
                 <figcaption className="mt-7 flex items-center justify-between text-sm">
-                  <span className="font-medium">{r.author}</span>
+                  <span className="font-medium" {...ed(`reviews.items.${i}.author`)}>
+                    {r.author}
+                  </span>
                   <span className="text-dim">{r.date}</span>
                 </figcaption>
               </figure>

@@ -6,31 +6,54 @@ import {
   useEffect,
   useState,
   type ReactNode,
+  type HTMLAttributes,
 } from "react";
 import type { SiteConfig } from "@/site.config";
 
 // ─────────────────────────────────────────────────────────────────────────
 //  ContentProvider — the single source of content for every section.
 //
-//  Normally it just hands components the build-time content (site.content.json
-//  via site.config). But when the page is loaded inside Mission Control's
-//  preview (?mcpreview=1), it listens for the editor's draft over postMessage
-//  and swaps it in live — so the whole site re-renders as the client types,
-//  with no rebuild. It also reports clicks on [data-mc-field] elements back to
-//  the editor (click-to-edit).
+//  Normally it hands components the build-time content. Inside Mission
+//  Control's preview (?mcpreview=1) it accepts the editor's draft over
+//  postMessage and re-renders live, AND makes [data-mc-field] elements
+//  click-to-type (contentEditable) — edits post back to the editor so the
+//  form, the draft, and the page stay in sync. Publishing is unchanged.
 // ─────────────────────────────────────────────────────────────────────────
 
-const ContentContext = createContext<SiteConfig | null>(null);
+type Ctx = { content: SiteConfig; isPreview: boolean };
+const ContentContext = createContext<Ctx | null>(null);
 
 export function useContent(): SiteConfig {
   const ctx = useContext(ContentContext);
-  if (!ctx) {
-    throw new Error("useContent must be used within <ContentProvider>");
-  }
-  return ctx;
+  if (!ctx) throw new Error("useContent must be used within <ContentProvider>");
+  return ctx.content;
 }
 
-// Origins allowed to drive the preview (Mission Control prod + local dev).
+type EditableProps = HTMLAttributes<HTMLElement> & { "data-mc-field": string };
+
+/**
+ * Spread onto an editable text element: in preview it becomes click-to-type
+ * and reports edits to Mission Control; in production it's just a data attr.
+ *   <p {...editable("business.description")}>{description}</p>
+ */
+export function useEditable() {
+  const ctx = useContext(ContentContext);
+  const isPreview = ctx?.isPreview ?? false;
+  return (field: string): EditableProps => {
+    if (!isPreview) return { "data-mc-field": field };
+    return {
+      "data-mc-field": field,
+      contentEditable: "plaintext-only",
+      suppressContentEditableWarning: true,
+      onInput: (e) =>
+        window.parent.postMessage(
+          { type: "mc:edit", field, value: e.currentTarget.textContent ?? "" },
+          "*"
+        ),
+    };
+  };
+}
+
 const ALLOWED_ORIGINS = [
   "https://mission-control-recstu.fly.dev",
   "http://localhost:5173",
@@ -46,49 +69,58 @@ export default function ContentProvider({
   children: ReactNode;
 }) {
   const [content, setContent] = useState<SiteConfig>(initial);
+  const [isPreview, setIsPreview] = useState(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.get("mcpreview") !== "1") return;
-
+    setIsPreview(true);
     document.documentElement.setAttribute("data-mc-preview", "1");
 
-    const allowed = (origin: string) =>
-      origin === window.location.origin || ALLOWED_ORIGINS.includes(origin);
+    // hover/focus affordance so newbies see what's editable
+    const style = document.createElement("style");
+    style.textContent =
+      "[data-mc-field]{transition:outline-color .15s}" +
+      "[data-mc-field]:hover{outline:1px dashed var(--accent);outline-offset:3px;cursor:text}" +
+      "[data-mc-field]:focus{outline:2px solid var(--accent);outline-offset:3px}";
+    document.head.appendChild(style);
+
+    const allowed = (o: string) =>
+      o === window.location.origin || ALLOWED_ORIGINS.includes(o);
 
     const onMessage = (e: MessageEvent) => {
       if (!allowed(e.origin)) return;
-      const data = e.data;
-      if (data && data.type === "mc:content" && data.content) {
-        setContent(data.content as SiteConfig);
+      if (e.data?.type === "mc:content" && e.data.content) {
+        setContent(e.data.content as SiteConfig);
       }
     };
 
-    // Click any annotated element → tell the editor which field it maps to.
     const onClick = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement | null)?.closest?.("[data-mc-field]");
-      if (!el) return;
-      e.preventDefault();
-      e.stopPropagation();
-      window.parent.postMessage(
-        { type: "mc:click", field: el.getAttribute("data-mc-field") },
-        "*"
-      );
+      const t = e.target as HTMLElement | null;
+      // never navigate away inside the preview
+      if (t?.closest?.("a, button")) e.preventDefault();
+      const el = t?.closest?.("[data-mc-field]");
+      if (el) {
+        window.parent.postMessage(
+          { type: "mc:click", field: el.getAttribute("data-mc-field") },
+          "*"
+        );
+      }
     };
 
     window.addEventListener("message", onMessage);
     document.addEventListener("click", onClick, true);
-    // Tell the editor we're mounted and ready for content.
     window.parent.postMessage({ type: "mc:ready" }, "*");
 
     return () => {
       window.removeEventListener("message", onMessage);
       document.removeEventListener("click", onClick, true);
+      style.remove();
     };
   }, []);
 
   return (
-    <ContentContext.Provider value={content}>
+    <ContentContext.Provider value={{ content, isPreview }}>
       {children}
     </ContentContext.Provider>
   );

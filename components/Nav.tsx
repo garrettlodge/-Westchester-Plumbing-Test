@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useContent } from "@/components/ContentProvider";
+import { useContent, useEditable } from "@/components/ContentProvider";
 
 const LINKS = [
   { href: "#services", label: "Services" },
@@ -14,6 +14,7 @@ const LINKS = [
 
 export default function Nav() {
   const { business, contact } = useContent();
+  const ed = useEditable();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -47,6 +48,7 @@ export default function Nav() {
         <a
           href="#top"
           className="text-display text-xl tracking-tight md:text-2xl"
+          {...ed("business.name")}
         >
           {business.name}
         </a>

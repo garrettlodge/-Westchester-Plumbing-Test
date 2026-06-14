@@ -3,7 +3,7 @@
 import { Fragment } from "react";
 import { motion } from "framer-motion";
 import Reveal from "./Reveal";
-import { useContent } from "@/components/ContentProvider";
+import { useContent, useEditable } from "@/components/ContentProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -15,7 +15,7 @@ function renderTagline(tagline: string) {
     .map((part, i) => {
       if (part.startsWith("*") && part.endsWith("*")) {
         return (
-          <em key={i} className="text-accent italic">
+          <em key={i} className="text-accent not-italic">
             {part.slice(1, -1)}
           </em>
         );
@@ -26,6 +26,7 @@ function renderTagline(tagline: string) {
 
 export default function Hero() {
   const { business, contact, reviews } = useContent();
+  const ed = useEditable();
 
   return (
     <section
@@ -47,7 +48,7 @@ export default function Hero() {
             </span>
           </motion.p>
 
-          <h1 className="text-display text-[clamp(2.75rem,8vw,6rem)]">
+          <h1 className="text-display text-[clamp(2.5rem,7vw,5rem)]">
             <span className="block overflow-hidden pb-[0.12em]">
               <motion.span
                 className="block"
@@ -61,7 +62,10 @@ export default function Hero() {
           </h1>
 
           <Reveal delay={0.45} className="mt-8 max-w-xl">
-            <p className="text-dim text-base leading-relaxed md:text-lg">
+            <p
+              className="text-dim text-base leading-relaxed md:text-lg"
+              {...ed("business.description")}
+            >
               {business.description}
             </p>
           </Reveal>
@@ -76,7 +80,9 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={0.65}>
-            <p className="text-eyebrow mt-10">{business.license}</p>
+            <p className="text-eyebrow mt-10" {...ed("business.license")}>
+              {business.license}
+            </p>
           </Reveal>
         </div>
 

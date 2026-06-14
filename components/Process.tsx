@@ -1,10 +1,11 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { useContent } from "@/components/ContentProvider";
+import { useContent, useEditable } from "@/components/ContentProvider";
 
 export default function Process() {
   const { process } = useContent();
+  const ed = useEditable();
 
   return (
     <section id="process" className="scroll-mt-24 border-t hairline py-24 md:py-32">
@@ -23,8 +24,13 @@ export default function Process() {
                 <span className="text-display text-accent text-5xl">
                   {step.n}
                 </span>
-                <h3 className="mt-5 text-lg font-medium">{step.title}</h3>
-                <p className="text-dim mt-3 text-sm leading-relaxed">
+                <h3 className="mt-5 text-lg font-medium" {...ed(`process.${i}.title`)}>
+                  {step.title}
+                </h3>
+                <p
+                  className="text-dim mt-3 text-sm leading-relaxed"
+                  {...ed(`process.${i}.body`)}
+                >
                   {step.body}
                 </p>
               </div>

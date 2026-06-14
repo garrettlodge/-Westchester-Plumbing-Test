@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useContent } from "@/components/ContentProvider";
+import { useContent, useEditable } from "@/components/ContentProvider";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function FAQ() {
   const { faq } = useContent();
+  const ed = useEditable();
   const [open, setOpen] = useState<number | null>(0);
 
   return (
@@ -32,7 +33,10 @@ export default function FAQ() {
                   <span className="text-eyebrow shrink-0">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="text-display flex-1 text-xl md:text-2xl">
+                  <span
+                    className="text-display flex-1 text-xl md:text-2xl"
+                    {...ed(`faq.${i}.q`)}
+                  >
                     {item.q}
                   </span>
                   <span
@@ -53,7 +57,10 @@ export default function FAQ() {
                       transition={{ duration: 0.4, ease: EASE }}
                       className="overflow-hidden"
                     >
-                      <p className="text-dim max-w-2xl pb-7 pl-[3.25rem] leading-relaxed md:pl-16">
+                      <p
+                        className="text-dim max-w-2xl pb-7 pl-[3.25rem] leading-relaxed md:pl-16"
+                        {...ed(`faq.${i}.a`)}
+                      >
                         {item.a}
                       </p>
                     </motion.div>

@@ -1,11 +1,12 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { useContent } from "@/components/ContentProvider";
+import { useContent, useEditable } from "@/components/ContentProvider";
 
 export default function Contact() {
   const { contact, business } = useContent();
   const { address } = contact;
+  const ed = useEditable();
 
   return (
     <section
@@ -24,7 +25,7 @@ export default function Contact() {
       <div className="relative mx-auto max-w-shell px-6 md:px-10">
         <Reveal>
           <p className="text-eyebrow mb-6">07 — Get in touch</p>
-          <h2 className="text-display text-[clamp(3rem,10vw,7rem)]">
+          <h2 className="text-display text-[clamp(2.5rem,8vw,5rem)]">
             Get in touch.
           </h2>
         </Reveal>
@@ -37,6 +38,7 @@ export default function Contact() {
                 <a
                   href={`tel:${contact.phoneTel}`}
                   className="link-line text-display text-4xl md:text-5xl"
+                  {...ed("contact.phone")}
                 >
                   {contact.phone}
                 </a>
@@ -46,6 +48,7 @@ export default function Contact() {
                 <a
                   href={`mailto:${contact.email}`}
                   className="link-line text-lg"
+                  {...ed("contact.email")}
                 >
                   {contact.email}
                 </a>
@@ -66,7 +69,7 @@ export default function Contact() {
           </Reveal>
 
           <Reveal delay={0.2}>
-            <div className="rounded-2xl border hairline p-8 md:p-10">
+            <div className="rounded-lg border hairline p-8 md:p-10">
               <p className="text-eyebrow mb-6">Hours</p>
               <dl className="space-y-3">
                 {contact.hours.map((h) => (

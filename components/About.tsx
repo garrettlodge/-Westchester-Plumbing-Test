@@ -1,10 +1,11 @@
 "use client";
 
 import Reveal from "./Reveal";
-import { useContent } from "@/components/ContentProvider";
+import { useContent, useEditable } from "@/components/ContentProvider";
 
 export default function About() {
   const { about, business } = useContent();
+  const ed = useEditable();
   const initials = about.owner
     .split(" ")
     .map((w) => w[0])
@@ -24,7 +25,7 @@ export default function About() {
               <img
                 src={about.photo}
                 alt={`${about.owner}, ${about.ownerRole} at ${business.name}`}
-                className="aspect-[4/5] w-full rounded-2xl border hairline object-cover"
+                className="aspect-[4/5] w-full rounded-lg border hairline object-cover"
               />
             ) : (
               <AboutPlate initials={initials} role={about.ownerRole} />
@@ -37,14 +38,20 @@ export default function About() {
             </h2>
             <div className="mt-6 space-y-4">
               {about.paragraphs.map((p, i) => (
-                <p key={i} className="text-dim leading-relaxed">
+                <p
+                  key={i}
+                  className="text-dim leading-relaxed"
+                  {...ed(`about.paragraphs.${i}`)}
+                >
                   {p}
                 </p>
               ))}
             </div>
             <div className="mt-8 border-t hairline pt-6">
-              <p className="font-medium">{about.owner}</p>
-              <p className="text-dim text-sm">{about.ownerRole}</p>
+              <p className="font-medium" {...ed("about.owner")}>{about.owner}</p>
+              <p className="text-dim text-sm" {...ed("about.ownerRole")}>
+                {about.ownerRole}
+              </p>
             </div>
           </Reveal>
         </div>
