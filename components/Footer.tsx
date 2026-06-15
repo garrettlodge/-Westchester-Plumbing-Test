@@ -97,14 +97,23 @@ export default function Footer() {
           )}
         </div>
 
-        {/* Colossal wordmark watermark */}
-        <div className="pointer-events-none mt-16 select-none overflow-hidden">
-          <span
-            className="text-display block whitespace-nowrap leading-[0.8] text-fg"
-            style={{ fontSize: "18vw", opacity: 0.06 }}
-          >
-            {business.name}
-          </span>
+        {/* Colossal wordmark watermark — SVG scales to fit any name length */}
+        <div className="pointer-events-none mt-16 select-none" aria-hidden>
+          <svg viewBox="0 0 1000 150" className="block w-full" style={{ opacity: 0.06 }}>
+            <text
+              x="500"
+              y="120"
+              textAnchor="middle"
+              textLength="980"
+              lengthAdjust="spacingAndGlyphs"
+              fontFamily="var(--font-sans), system-ui, sans-serif"
+              fontWeight="600"
+              fontSize="140"
+              fill="var(--fg)"
+            >
+              {business.name}
+            </text>
+          </svg>
         </div>
 
         <div className="text-dim flex flex-col gap-2 border-t hairline py-8 text-xs md:flex-row md:items-center md:justify-between">

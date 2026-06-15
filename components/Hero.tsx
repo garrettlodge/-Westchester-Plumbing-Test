@@ -25,7 +25,7 @@ function renderTagline(tagline: string) {
 }
 
 export default function Hero() {
-  const { business, contact, reviews } = useContent();
+  const { business, contact, reviews, services } = useContent();
   const ed = useEditable();
 
   return (
@@ -33,6 +33,11 @@ export default function Hero() {
       id="top"
       className="relative mx-auto max-w-shell px-6 pb-20 pt-36 md:px-10 md:pb-28 md:pt-44"
     >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{ background: "radial-gradient(55% 75% at 82% 8%, var(--accent-soft), transparent 70%)" }}
+      />
       <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         <div>
           <motion.p
@@ -48,7 +53,7 @@ export default function Hero() {
             </span>
           </motion.p>
 
-          <h1 className="text-display text-[clamp(2.5rem,7vw,5rem)]">
+          <h1 className="text-display text-[clamp(3rem,9vw,7rem)]">
             <span className="block overflow-hidden pb-[0.12em]">
               <motion.span
                 className="block"
@@ -90,6 +95,22 @@ export default function Hero() {
           <HeroPlate year={business.foundedYear} rating={reviews.rating} />
         </Reveal>
       </div>
+
+      {services.length > 0 && (
+        <div className="relative mt-16 overflow-hidden border-y hairline py-4 md:mt-24">
+          <div className="marquee-track">
+            {[...services, ...services].map((s, i) => (
+              <span
+                key={i}
+                className="text-display text-dim mx-8 inline-flex items-center gap-5 text-2xl md:text-3xl"
+              >
+                {s.title}
+                <span className="text-accent text-sm">✦</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

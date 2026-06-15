@@ -55,7 +55,7 @@ export default function Reviews() {
         <div className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8">
           {reviews.items.map((r, i) => (
             <Reveal key={i} delay={Math.min(i * 0.06, 0.24)}>
-              <figure className="relative h-full overflow-hidden rounded-lg border hairline p-8 md:p-10">
+              <figure className="lift relative h-full overflow-hidden rounded-lg border hairline p-8 md:p-10">
                 <span
                   aria-hidden
                   className="text-display text-accent pointer-events-none absolute -right-1 top-2 text-[7rem] leading-none opacity-15"

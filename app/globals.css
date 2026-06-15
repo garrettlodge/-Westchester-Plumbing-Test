@@ -46,6 +46,45 @@
   color: var(--fg);
 }
 
+/* ── Subtle film grain for depth ────────────────────────────────────────── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Kinetic marquee ────────────────────────────────────────────────────── */
+@keyframes mc-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: inline-flex;
+  flex-shrink: 0;
+  white-space: nowrap;
+  will-change: transform;
+  animation: mc-marquee 34s linear infinite;
+}
+
+/* ── Hover lift for cards ───────────────────────────────────────────────── */
+.lift {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px -22px rgba(20, 20, 19, 0.35);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -72,11 +111,11 @@ body {
 
 /* ── Editorial type utilities ──────────────────────────────────────────── */
 .text-display {
-  /* Oak & Grid: clean modern sans for headlines (not serif) */
+  /* clean modern sans for headlines — bold & tight for impact */
   font-family: var(--font-sans), system-ui, sans-serif;
-  letter-spacing: -0.021em;
-  line-height: 1.04;
-  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-weight: 600;
 }
 
 .text-eyebrow {
