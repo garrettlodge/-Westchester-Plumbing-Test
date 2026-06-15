@@ -19,12 +19,12 @@
 }
 
 .theme-dark {
-  --bg: #100f0e;
-  --fg: #f5f3ee;
-  --fg-dim: #9a968c;
-  --hairline: rgba(245, 243, 238, 0.12);
-  --hairline-strong: rgba(245, 243, 238, 0.26);
-  --accent-soft: color-mix(in srgb, var(--accent) 16%, transparent);
+  --bg: #0a0a0b; /* near-black, premium (Open vibe) */
+  --fg: #f4f4f2;
+  --fg-dim: #8a8a86;
+  --hairline: rgba(244, 244, 242, 0.14);
+  --hairline-strong: rgba(244, 244, 242, 0.3);
+  --accent-soft: color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 /* ── Section background tones (separate the blocks) ─────────────────────── */
