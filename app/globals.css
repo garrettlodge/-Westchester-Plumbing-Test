@@ -9,21 +9,25 @@
    in layout.tsx from site.config.theme.accent, so it's swappable per client.
    ═══════════════════════════════════════════════════════════════════════ */
 :root {
-  --bg: #f7f5f1; /* warm cream (Oak & Grid) */
+  /* Only THREE colors define a theme: background, foreground, accent.
+     Any client can override these (inline on <html> from theme.bg/fg/accent),
+     and everything below derives from them — so custom palettes stay coherent
+     and you're never locked into the template's defaults. */
+  --bg: #f7f5f1; /* warm cream */
   --fg: #1f1d1b; /* charcoal */
-  --fg-dim: #6b6862;
-  --hairline: rgba(31, 29, 27, 0.13);
-  --hairline-strong: rgba(31, 29, 27, 0.24);
   --accent: #b4532a; /* fallback; overridden inline from config */
-  --accent-soft: color-mix(in srgb, var(--accent) 10%, transparent);
+
+  /* derived — recompute automatically from whatever --bg/--fg/--accent are */
+  --fg-dim: color-mix(in srgb, var(--fg) 58%, var(--bg));
+  --hairline: color-mix(in srgb, var(--fg) 14%, transparent);
+  --hairline-strong: color-mix(in srgb, var(--fg) 26%, transparent);
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
+/* Dark mode just swaps the two base colors; the derived tokens follow. */
 .theme-dark {
   --bg: #0a0a0b; /* near-black, premium (Open vibe) */
   --fg: #f4f4f2;
-  --fg-dim: #8a8a86;
-  --hairline: rgba(244, 244, 242, 0.14);
-  --hairline-strong: rgba(244, 244, 242, 0.3);
   --accent-soft: color-mix(in srgb, var(--accent) 20%, transparent);
 }
 

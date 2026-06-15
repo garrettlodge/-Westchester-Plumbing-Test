@@ -70,8 +70,10 @@ export interface SiteConfig {
     yelp?: string;
   };
   theme: {
-    mode: "light" | "dark";
+    mode: "light" | "dark"; // base palette; bg/fg below override it if set
     accent: string; // hex — single accent color used site-wide
+    bg?: string; // optional custom background (hex) — overrides the mode default
+    fg?: string; // optional custom text color (hex) — overrides the mode default
   };
   /** Optional page layout — section order, visibility, background tone, and
    *  user-added blocks (id + inline data). Absent = default layout. */

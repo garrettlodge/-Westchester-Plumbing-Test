@@ -122,6 +122,21 @@ export default function ContentProvider({
     };
   }, []);
 
+  // In preview, the <html> class/style are baked at build time and won't
+  // change as the draft streams in — so reflect theme edits (mode / accent /
+  // custom bg + fg) onto the document live, matching layout.tsx's logic.
+  useEffect(() => {
+    if (!isPreview) return;
+    const root = document.documentElement;
+    const t = content.theme || ({} as SiteConfig["theme"]);
+    root.classList.toggle("theme-dark", t.mode === "dark");
+    if (t.accent) root.style.setProperty("--accent", t.accent);
+    if (t.bg) root.style.setProperty("--bg", t.bg);
+    else root.style.removeProperty("--bg");
+    if (t.fg) root.style.setProperty("--fg", t.fg);
+    else root.style.removeProperty("--fg");
+  }, [isPreview, content.theme]);
+
   return (
     <ContentContext.Provider value={{ content, isPreview }}>
       {children}

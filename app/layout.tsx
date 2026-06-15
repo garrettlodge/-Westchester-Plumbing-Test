@@ -66,7 +66,14 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} ${mono.variable} ${
         siteConfig.theme.mode === "dark" ? "theme-dark" : ""
       }`}
-      style={{ "--accent": siteConfig.theme.accent } as CSSProperties}
+      style={
+        {
+          "--accent": siteConfig.theme.accent,
+          // optional per-client overrides — blank falls back to the mode default
+          ...(siteConfig.theme.bg ? { "--bg": siteConfig.theme.bg } : {}),
+          ...(siteConfig.theme.fg ? { "--fg": siteConfig.theme.fg } : {}),
+        } as CSSProperties
+      }
     >
       <body>
         <ContentProvider initial={siteConfig}>{children}</ContentProvider>
