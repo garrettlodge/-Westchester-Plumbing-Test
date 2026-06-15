@@ -70,8 +70,19 @@ export default function Reviews() {
                   {r.body}
                 </blockquote>
                 <figcaption className="mt-7 flex items-center justify-between text-sm">
-                  <span className="font-medium" {...ed(`reviews.items.${i}.author`)}>
-                    {r.author}
+                  <span className="flex items-center gap-3">
+                    <span
+                      aria-hidden
+                      className="bg-soft text-accent flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold"
+                    >
+                      {(r.author || "").trim().charAt(0).toUpperCase() || "★"}
+                    </span>
+                    <span
+                      className="font-medium"
+                      {...ed(`reviews.items.${i}.author`)}
+                    >
+                      {r.author}
+                    </span>
                   </span>
                   <span className="text-dim">{r.date}</span>
                 </figcaption>
